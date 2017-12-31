@@ -12,6 +12,9 @@ class Feed extends Component {
 	}
 
 	startSlideshow(items) {
+		clearInterval(this.timer);
+		items[0].show = true;
+		this.setState({ items: items });
 		let i = 0;
 		this.timer = setInterval(() => {
 			// eslint-disable-next-line
@@ -26,19 +29,13 @@ class Feed extends Component {
 
 	componentDidMount() {
 		if(this.props.widget.data && this.props.widget.data.items) {
-			var items = this.props.widget.data.items;
-			items[0].show = true;
-			this.setState({ items: items });
-			this.startSlideshow(items);
+			this.startSlideshow(this.props.widget.data.items);
 		}
 	}
 
 	componentWillReceiveProps(props) {
 		if(props.widget.data && props.widget.data.items) {
-			var items = props.widget.data.items;
-			items[0].show = true;
-			this.setState({ items: items });
-			this.startSlideshow(items);
+			this.startSlideshow(props.widget.data.items);
 		}
 	}
 
