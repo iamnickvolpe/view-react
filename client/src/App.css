@@ -15,6 +15,7 @@ body {
     bottom: .5rem;
     right: .5rem;
     z-index: 1;
+    display: none;
 }
 
 .dashboard {
@@ -36,6 +37,8 @@ body {
     position: relative;
     overflow: hidden;
     padding: 1rem;
+    color: white;
+    font-size: 4vh;
 }
 
 .subway {
@@ -57,7 +60,7 @@ body {
     overflow: hidden;
     padding: 1rem;
     color: #5d5d5d;
-    font-size: 4vh;
+    font-size: 5vh;
 }
 
 .weather {
@@ -82,6 +85,7 @@ body {
     background-color: blue;
     height: 100%;
     padding: 1rem;
+    overflow: hidden;
 }
 
 .events__event {
@@ -90,14 +94,9 @@ body {
 
 .events__summary {
     width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.events__time {
-    font-size: 11px;
-    opacity: .8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .countdown {
@@ -105,13 +104,8 @@ body {
     background-color: #f97852;
     height: 100%;
     padding: 1rem;
-    font-size: 5vh;
-    line-height: 1.2em;
+    font-size: 4vh;
     color: white;
-}
-
-.countdown__timer {
-    display: flex;
 }
 
 .feed__item {
@@ -126,13 +120,6 @@ body {
     background-color: lightgray;
     background-position: center center;
     padding: 1rem;
-}
-
-.feed__title {
-    font-size: 4vh;
-    font-weight: bold;
-    line-height: 1.2em;
-    color: white;
 }
 
 .feed__item--show {
@@ -151,14 +138,26 @@ body {
     margin-bottom: 1rem;
 }
 
-.section {
-    margin-bottom: 1em;
+.font-1 {
     font-size: 1.2em;
-    line-height: 1.2em;
 }
 
-.section .section {
-    margin-bottom: .5em;
-    font-size: .8em;
-    line-height: 1.2em;
+.font-2 {
+    font-size: .9em;
+}
+
+.font-3 {
+    font-size: .7em;
+}
+
+.margin-1 {
+    margin-bottom: 1em;
+}
+
+.margin-2 {
+    margin-bottom: .8em;
+}
+
+.margin-3 {
+    margin-bottom: .2em
 }

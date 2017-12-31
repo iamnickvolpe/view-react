@@ -19,12 +19,12 @@ class Day extends Component {
     render() {
         return (
             <div className="day bold">
-                <div className="section">
+                <div className="font-1 margin-1">
                     <div><Moment format="dddd">{this.state.time}</Moment></div>
                     <div><Moment format="MMMM">{this.state.time}</Moment></div>
                     <div><Moment format="Do">{this.state.time}</Moment></div>  
                 </div>  
-                <div className="section"><Moment format="LT">{this.state.time}</Moment></div> 
+                <div className="font-1 normal"><Moment format="LT">{this.state.time}</Moment></div> 
             </div>
         )
     }

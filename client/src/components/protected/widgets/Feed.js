@@ -39,7 +39,7 @@ class Feed extends Component {
 									{ backgroundImage: `url(${item.visual.url})` }
 									: null} 
 								>
-								<div className="feed__title">{item.title}</div>
+								<div className="font-1 bold feed__title">{item.title}</div>
 							</div>
 						)
 					})}
