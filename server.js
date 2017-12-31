@@ -8,6 +8,7 @@ const GtfsRealtimeBindings = require('gtfs-realtime-bindings');
 const admin = require('firebase-admin');
 const fs = require('fs');
 const readline = require('readline');
+const path = require('path');
 
 const serviceAccount = require('./secrets/service-account.json');
 const firebase = require('./secrets/firebase.json');
