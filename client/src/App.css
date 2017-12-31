@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Helvetica Neue";
+    font-family: 'Open Sans', sans-serif;
 }
 
 .header {
@@ -73,11 +73,11 @@ body {
 }
 
 .bold {
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .normal {
-    font-weight: 200;
+    font-weight: 300;
 }
 
 .events {
