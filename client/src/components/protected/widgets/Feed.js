@@ -8,13 +8,10 @@ class Feed extends Component {
 		this.state = {
 			items: [],
 		};
+		this.startSlideshow = this.startSlideshow.bind(this);
 	}
 
-	componentDidMount() {
-		let items = this.props.widget.data.items;
-		items[0].show = true;
-		this.setState({ items });
-
+	startSlideshow(items) {
 		let i = 0;
 		this.timer = setInterval(() => {
 			// eslint-disable-next-line
@@ -25,6 +22,24 @@ class Feed extends Component {
 			items[i].show = true;
 			this.setState({ items });
 		}, 5000);
+	}
+
+	componentDidMount() {
+		if(this.props.widget.data && this.props.widget.data.items) {
+			var items = this.props.widget.data.items;
+			items[0].show = true;
+			this.setState({ items: items });
+			this.startSlideshow(items);
+		}
+	}
+
+	componentWillReceiveProps(props) {
+		if(props.widget.data && props.widget.data.items) {
+			var items = props.widget.data.items;
+			items[0].show = true;
+			this.setState({ items: items });
+			this.startSlideshow(items);
+		}
 	}
 
 	render() {
