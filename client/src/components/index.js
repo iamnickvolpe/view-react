@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Link, Redirect, Switch } from 'react-router-dom';
 import '../App.css';
+import '../weather-underground-icons/wu-icons-style.min.css';
 import Login from './Login';
 import Register from './Register';
 import Home from './Home';

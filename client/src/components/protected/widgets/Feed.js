@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import Moment from 'react-moment';
+import Moment from 'react-moment';
 //import firebase from 'firebase';
 
 class Feed extends Component {
@@ -24,7 +24,7 @@ class Feed extends Component {
 			i < items.length -1 ? i++ :i=0;
 			items[i].show = true;
 			this.setState({ items });
-		}, 5000);
+		}, 10000);
 	}
 
 	componentDidMount() {
@@ -51,7 +51,8 @@ class Feed extends Component {
 									{ backgroundImage: `url(${item.visual.url})` }
 									: null} 
 								>
-								<div className="font-1 bold feed__title">{item.title}</div>
+								<div className="font-3 margin-2 normal">{item.origin.title} &bull; <Moment fromNow>{item.published}</Moment></div>
+								<div className="font-1 bold">{item.title}</div>
 							</div>
 						)
 					})}

@@ -18,7 +18,11 @@ class Day extends Component {
 
     render() {
         return (
-            <div className="day bold">
+            <div className="day bold" style={{ 
+                backgroundColor: this.props.widget.settings.backgroundColor, 
+                color: this.props.widget.settings.color, 
+                backgroundImage: `url(${this.props.widget.settings.backgroundImage})`
+                }} >
                 <div className="font-1 margin-1">
                     <div><Moment format="dddd">{this.state.time}</Moment></div>
                     <div><Moment format="MMMM">{this.state.time}</Moment></div>

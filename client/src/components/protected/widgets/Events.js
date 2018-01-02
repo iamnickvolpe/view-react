@@ -10,7 +10,7 @@ class Events extends Component {
                         return (
                             <div className="margin-2" key={event.id}>
                                 <div className="bold font-2 events__summary">{event.summary}</div>
-                                <div className="normal font-3"><Moment format="dddd MMMM Do @ h:mma">{event.start.date || event.start.dateTime}</Moment></div>
+                                <div className="normal font-3"><Moment format="dddd MMMM Do @ h:mma">{event.start.date || event.start.dateTime}</Moment> (<Moment fromNow>{event.start.date || event.start.dateTime}</Moment>)</div>
                             </div>
                         )
                     })}

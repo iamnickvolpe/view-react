@@ -18,11 +18,11 @@ admin.initializeApp({
 });
 const db = admin.database();
 
-db.ref('users').once("value").then((usersSnapshot) => {
+db.ref('users').on("value").then((usersSnapshot) => {
   usersSnapshot.forEach((user) => {
-    db.ref(`users/${user.key}`).once("value").then((userSnapshot) => {
+    db.ref(`users/${user.key}`).on("value").then((userSnapshot) => {
       var credentials = userSnapshot.val().credentials;
-      db.ref(`users/${user.key}/widgets`).once("value").then((widgetsSnapshot) => {
+      db.ref(`users/${user.key}/widgets`).on("value").then((widgetsSnapshot) => {
         widgetsSnapshot.forEach((widget) => {
           var dataRef = db.ref(`users/${user.key}/widgets/${widget.key}/data`);
 
@@ -67,7 +67,7 @@ db.ref('users').once("value").then((usersSnapshot) => {
               getEvents(credentials.google, widget.val().settings.calendarId, (body) => {
                 dataRef.set(body);
               });
-            }, 3600000);
+            }, 900000);
           }
 
         });

@@ -16,7 +16,7 @@ class Countdown extends Component {
         const that = this;
         setInterval(function() {
             let currentTime = moment();
-            let diff = moment.duration(moment(that.props.widget.data.date).diff(currentTime, 'milliseconds'));
+            let diff = moment.duration(moment(that.props.widget.settings.date).diff(currentTime, 'milliseconds'));
             that.setState({ 
                 days: Math.floor(diff.asDays()),
                 hours: diff._data.hours,
@@ -28,8 +28,12 @@ class Countdown extends Component {
 
     render() {
         return (
-            <div className="countdown">
-                <div className="bold margin-3 font-1">Our wedding</div>
+            <div className="countdown" style={{ 
+                backgroundColor: this.props.widget.settings.backgroundColor, 
+                color: this.props.widget.settings.color, 
+                backgroundImage: `url(${this.props.widget.settings.backgroundImage})`
+                }} >
+                <div className="bold margin-3 font-1">{this.props.widget.settings.title}</div>
                 <div className="font-2">
                     <div><span className="bold">{this.state.days} </span><span className="normal">days</span></div>
                     <div><span className="bold">{this.state.hours} </span><span className="normal">hours</span></div>

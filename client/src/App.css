@@ -32,44 +32,69 @@ body {
 
 .feed {
     width: Calc(100%/4);
-    background-color: white;
+    background-color: #292929;
     height: 100%;
     position: relative;
     overflow: hidden;
     padding: 1rem;
     color: white;
-    font-size: 4vh;
+    font-size: 3vh;
 }
 
 .subway {
     width: Calc(100%/4);
-    background-color: #cbff7c;
+    background-color: #292929;
     height: 100%;
     position: relative;
     overflow: hidden;
     padding: 1rem;
     font-size: 3vh;
-    color: #4c7d00;
+    color: white;
+}
+
+.subway__train {
+    height: 1.4em;
+    text-align: center;
+    width: 1.4em;
+    border-radius: 100%;
+    line-height: 1.4em;
+    display: inline-block;
+    margin-right: .1em;
+    vertical-align: middle;
 }
 
 .day {
     width: Calc(100%/4);
-    background-color: #e6e2ad;
     height: 100%;
     position: relative;
     overflow: hidden;
     padding: 1rem;
-    color: #5d5d5d;
     font-size: 5vh;
+    background-size: 110%;
+    background-position: center center;
+    z-index: 1;
+}
+
+.day::before {
+    content:"";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: -1;
 }
 
 .weather {
     width: Calc(100%/4);
-    background-color: #5d5d5d;
+    background-color: #f1e7a1;
     height: 100%;
     padding: 1rem;
     font-size: 3vh;
-    color: #e6e2ad;
+    color: #5d5d5d;
+    position: relative;
 }
 
 .bold {
@@ -88,10 +113,6 @@ body {
     overflow: hidden;
 }
 
-.events__event {
-    margin-bottom: .5rem;
-}
-
 .events__summary {
     width: 100%;
     white-space: nowrap;
@@ -101,11 +122,25 @@ body {
 
 .countdown {
     width: Calc(100%/4);
-    background-color: #f97852;
     height: 100%;
     padding: 1rem;
     font-size: 4vh;
-    color: white;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    z-index: 1;
+}
+
+.countdown::before {
+    content:"";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: -1;
 }
 
 .feed__item {
@@ -117,9 +152,20 @@ body {
     bottom: 0;
     left: 0;
     background-size: cover;
-    background-color: lightgray;
     background-position: center center;
     padding: 1rem;
+}
+
+.feed__item::before {
+    content:"";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .25);
+    z-index: -1;
 }
 
 .feed__item--show {
