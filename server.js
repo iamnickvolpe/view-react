@@ -18,11 +18,11 @@ admin.initializeApp({
 });
 const db = admin.database();
 
-db.ref('users').on("value").then((usersSnapshot) => {
+db.ref('users').once("value").then((usersSnapshot) => {
   usersSnapshot.forEach((user) => {
-    db.ref(`users/${user.key}`).on("value").then((userSnapshot) => {
+    db.ref(`users/${user.key}`).once("value").then((userSnapshot) => {
       var credentials = userSnapshot.val().credentials;
-      db.ref(`users/${user.key}/widgets`).on("value").then((widgetsSnapshot) => {
+      db.ref(`users/${user.key}/widgets`).once("value").then((widgetsSnapshot) => {
         widgetsSnapshot.forEach((widget) => {
           var dataRef = db.ref(`users/${user.key}/widgets/${widget.key}/data`);
 
