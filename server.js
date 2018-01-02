@@ -44,7 +44,12 @@ getData('weather', function(credentials, user, widget, dataRef) {
 
 getData('feed', function(credentials, user, widget, dataRef) {
   getFeed(credentials.feedly.userId, credentials.feedly.token, widget.val().settings.category, (body) => {
-    dataRef.set(JSON.parse(body));
+    var data = JSON.parse(body);
+    data.items.forEach(function(item) {
+      item.show = false;
+    });
+    data.items[0].show = true;
+    dataRef.set(data);
   });
 });
 
@@ -71,7 +76,12 @@ setInterval(() => {
 setInterval(() => {
   getData('feed', function(credentials, user, widget, dataRef) {
     getFeed(credentials.feedly.userId, credentials.feedly.token, widget.val().settings.category, (body) => {
-      dataRef.set(JSON.parse(body));
+      var data = JSON.parse(body);
+      data.items.forEach(function(item) {
+        item.show = false;
+      });
+      data.items[0].show = true;
+      dataRef.set(data);
     });
   });
 }, 3600000);
@@ -91,6 +101,23 @@ setInterval(() => {
     });
   });
 }, 900000);
+
+var i = 0;
+setInterval(() => {
+  getData('feed', function(credentials, user, widget, dataRef) {
+    dataRef.child('items').once("value").then((itemsSnapshot) => {
+      if(itemsSnapshot.val()) {
+        var items = itemsSnapshot.val();
+        items.forEach(function(item) {
+          item.show = false;
+        });
+        i < items.length -1 ? i++ :i=0;
+        items[i].show = true;
+        dataRef.child('items').set(items);
+      }
+    });
+  });
+}, 20000);
 
 function getWeather(token, zip, cb) {
   const options = {
