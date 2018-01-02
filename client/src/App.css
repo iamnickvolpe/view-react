@@ -112,6 +112,7 @@ body {
     height: 100%;
     padding: 1rem;
     overflow: hidden;
+    font-size: 3vh;
 }
 
 .events__summary {
