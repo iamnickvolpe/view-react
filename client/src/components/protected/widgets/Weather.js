@@ -10,7 +10,7 @@ class Weather extends Component {
     return (
       <div className="weather">
         <div>
-          <div><i className={`wu wu-black wu-64 ${iconType} wu-${data.current_observation.icon}`}></i></div>
+          <div><i className={`wu wu-black wu-128 ${iconType} wu-${data.current_observation.icon}`}></i></div>
           <div className="margin-2 font-2">
             <div><span className="normal">Currently </span><span className="bold">{data.current_observation.temp_f}&deg;</span></div>
             <div><span className="normal">Feels like </span><span className="bold">{data.current_observation.feelslike_f}&deg;</span></div>
