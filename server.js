@@ -18,63 +18,79 @@ admin.initializeApp({
 });
 const db = admin.database();
 
-db.ref('users').once("value").then((usersSnapshot) => {
-  usersSnapshot.forEach((user) => {
-    db.ref(`users/${user.key}`).once("value").then((userSnapshot) => {
-      var credentials = userSnapshot.val().credentials;
-      db.ref(`users/${user.key}/widgets`).once("value").then((widgetsSnapshot) => {
-        widgetsSnapshot.forEach((widget) => {
-          var dataRef = db.ref(`users/${user.key}/widgets/${widget.key}/data`);
-
-          if (widget.val().type === 'weather') {
-            getWeather(credentials.weather.token, widget.val().settings.zip, (body) => {
-              dataRef.set(JSON.parse(body));
-            });
-            setInterval(() => {
-              getWeather(credentials.weather.token, widget.val().settings.zip, (body) => {
-                dataRef.set(JSON.parse(body));
-              });
-            }, 3600000);
-          }
-
-          if (widget.val().type === 'feed') {
-            getFeed(credentials.feedly.userId, credentials.feedly.token, widget.val().settings.category, (body) => {
-              dataRef.set(JSON.parse(body));
-            });
-            setInterval(() => {
-              getFeed(credentials.feedly.userId, credentials.feedly.token, widget.val().settings.category, (body) => {
-                dataRef.set(JSON.parse(body));
-              });
-            }, 3600000);
-          }
-
-          if (widget.val().type === 'subway') {
-            getSubway(credentials.subway.key, widget.val().settings.lines, (body) => {
-              dataRef.set(body);
-            });
-            setInterval(() => {
-              getSubway(credentials.subway.key, widget.val().settings.lines, (body) => {
-                dataRef.set(body);
-              });
-            }, 60000);
-          }
-
-          if (widget.val().type === 'events') {
-            getEvents(credentials.google, widget.val().settings.calendarId, (body) => {
-              dataRef.set(body);
-            });
-            setInterval(() => {
-              getEvents(credentials.google, widget.val().settings.calendarId, (body) => {
-                dataRef.set(body);
-              });
-            }, 900000);
-          }
-
+function getData(type, callback) {
+  db.ref('users').once("value").then((usersSnapshot) => {
+    usersSnapshot.forEach((user) => {
+      db.ref(`users/${user.key}`).once("value").then((userSnapshot) => {
+        var credentials = userSnapshot.val().credentials;
+        db.ref(`users/${user.key}/widgets`).once("value").then((widgetsSnapshot) => {
+          widgetsSnapshot.forEach((widget) => {
+            if(type === widget.val().type) {
+              var dataRef = db.ref(`users/${user.key}/widgets/${widget.key}/data`);
+              callback(credentials, user, widget, dataRef);
+            }
+          });
         });
       });
     });
   });
+}
+
+getData('weather', function(credentials, user, widget, dataRef) {
+  getWeather(credentials.weather.token, widget.val().settings.zip, (body) => {
+    dataRef.set(JSON.parse(body));
+  });
 });
+
+getData('feed', function(credentials, user, widget, dataRef) {
+  getFeed(credentials.feedly.userId, credentials.feedly.token, widget.val().settings.category, (body) => {
+    dataRef.set(JSON.parse(body));
+  });
+});
+
+getData('subway', function(credentials, user, widget, dataRef) {
+  getSubway(credentials.subway.key, widget.val().settings.lines, (body) => {
+    dataRef.set(body);
+  });
+});
+
+getData('events', function(credentials, user, widget, dataRef) {
+  getEvents(credentials.google, widget.val().settings.calendarId, (body) => {
+    dataRef.set(body);
+  });
+});
+
+setInterval(() => {
+  getData('weather', function(credentials, user, widget, dataRef) {
+    getWeather(credentials.weather.token, widget.val().settings.zip, (body) => {
+      dataRef.set(JSON.parse(body));
+    });
+  });
+}, 3600000);
+
+setInterval(() => {
+  getData('feed', function(credentials, user, widget, dataRef) {
+    getFeed(credentials.feedly.userId, credentials.feedly.token, widget.val().settings.category, (body) => {
+      dataRef.set(JSON.parse(body));
+    });
+  });
+}, 3600000);
+
+setInterval(() => {
+  getData('subway', function(credentials, user, widget, dataRef) {
+    getSubway(credentials.subway.key, widget.val().settings.lines, (body) => {
+      dataRef.set(body);
+    });
+  });
+}, 60000);
+
+setInterval(() => {
+  getData('events', function(credentials, user, widget, dataRef) {
+    getEvents(credentials.google, widget.val().settings.calendarId, (body) => {
+      dataRef.set(body);
+    });
+  });
+}, 900000);
 
 function getWeather(token, zip, cb) {
   const options = {
