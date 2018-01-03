@@ -7,7 +7,9 @@ class Feed extends Component {
 			<div className="feed">
 				{(this.props.widget.data && this.props.widget.data.items) ? this.props.widget.data.items.map((item) => {
 						return (
-							<div 
+							<a 
+								href={item.canonicalUrl}
+								target="_blank"
 								className={'feed__item ' + (item.show === true ? 'feed__item--show' : '')} 
 								key={item.id}
 								style={item.visual && item.visual.url && item.visual.url !== 'none' ?
@@ -16,7 +18,7 @@ class Feed extends Component {
 								>
 								<div className="font-3 margin-2 normal">{item.origin.title} &bull; <Moment fromNow>{item.published}</Moment></div>
 								<div className="font-1 bold">{item.title}</div>
-							</div>
+							</a>
 						)
 					}): null}
 			</div>
