@@ -37,15 +37,15 @@ function getData(type, callback) {
   });
 }
 
-cron.schedule('* */30 * * * *', function(){
+cron.schedule('*/30 * * * *', function(){
   getData('weather', function(credentials, user, widget, dataRef) {
     getWeather(credentials.weather.token, widget.val().settings.zip, (body) => {
       dataRef.set(JSON.parse(body));
     });
   });
-}, false);
+}, true);
 
-cron.schedule('* */30 * * * *', function(){
+cron.schedule('*/30 * * * *', function(){
   getData('feed', function(credentials, user, widget, dataRef) {
     getFeed(credentials.feedly.userId, credentials.feedly.token, widget.val().settings.category, (body) => {
       var data = JSON.parse(body);
@@ -56,23 +56,23 @@ cron.schedule('* */30 * * * *', function(){
       dataRef.set(data);
     });
   });
-}, false);
+}, true);
 
-cron.schedule('* */1 * * * *', function(){
+cron.schedule('*/1 * * * *', function(){
   getData('subway', function(credentials, user, widget, dataRef) {
     getSubway(credentials.subway.key, widget.val().settings.lines, (body) => {
       dataRef.set(body);
     });
   });
-}, false);
+}, true);
 
-cron.schedule('* */15 * * * *', function(){
+cron.schedule('*/15 * * * *', function(){
   getData('events', function(credentials, user, widget, dataRef) {
     getEvents(credentials.google, widget.val().settings.calendarId, (body) => {
       dataRef.set(body);
     });
   });
-}, false);
+}, true);
 
 var i = 0;
 cron.schedule('*/20 * * * * *', function(){
