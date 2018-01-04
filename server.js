@@ -61,10 +61,24 @@ cron.schedule('*/30 * * * *', function(){
 cron.schedule('*/1 * * * *', function(){
   getData('subway', function(credentials, user, widget, dataRef) {
     getSubway(credentials.subway.key, widget.val().settings.lines, (body) => {
-      dataRef.set(body);
+      dataRef.child('subway').set(body);
+    });
+
+    getBus(credentials.subway.busKey, widget.val().settings.busLines, (body) => {
+      dataRef.child('bus').set(body);
     });
   });
 }, true);
+
+getData('subway', function(credentials, user, widget, dataRef) {
+  getSubway(credentials.subway.key, widget.val().settings.lines, (body) => {
+    dataRef.child('subway').set(body);
+  });
+
+  getBus(credentials.subway.busKey, widget.val().settings.busLines, (body) => {
+    dataRef.child('bus').set(body);
+  });
+});
 
 cron.schedule('*/15 * * * *', function(){
   getData('events', function(credentials, user, widget, dataRef) {
@@ -117,6 +131,29 @@ function getFeed(userId, token, category, cb) {
       cb(body);
     }
   }
+}
+
+function getBus(key, lines, cb) {
+  var data = [];
+  var lineIterator = 0;
+  lines.forEach(function(line) {
+    const requestSettings = {
+      method: 'GET',
+      url: `http://bustime.mta.info/api/siri/stop-monitoring.json?key=${key}&OperatorRef=MTA&MonitoringRef=${line.monitoringRef}&LineRef=${line.lineRef}`,
+    };
+    request(requestSettings, function (error, response, body) {
+      var jsonBody = JSON.parse(body);
+      data.push({
+        line: line.name,
+        to: line.to,
+        journies: jsonBody.Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit,
+      });
+      lineIterator++;
+      if (lineIterator == lines.length -1) {
+        cb(data);
+      }
+    });
+  });
 }
 
 function getSubway(key, lines, cb) {
