@@ -97,6 +97,10 @@ body {
     position: relative;
 }
 
+.weather i.wu {
+    margin: -12px;
+}
+
 .bold {
     font-weight: 700;
 }
@@ -111,6 +115,11 @@ body {
     padding: 3vh;
     overflow: hidden;
     font-size: 1.76vh;
+}
+
+.events .left {
+    display: inline-block;
+    width: 5em;
 }
 
 .events__summary {
@@ -201,6 +210,10 @@ body {
     font-size: .7em;
 }
 
+.font-4 {
+    font-size: .5em;
+}
+
 .margin-1 {
     margin-bottom: 1em;
 }
@@ -210,7 +223,7 @@ body {
 }
 
 .margin-3 {
-    margin-bottom: .2em
+    margin-bottom: .4em
 }
 
 @media (max-width : 600px) { 
