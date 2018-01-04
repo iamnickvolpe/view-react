@@ -59,10 +59,10 @@ class Subway extends Component {
                     {busStops.map((stop, i) => {
                         return (
                             <div key={i}>
-                                <div className="bold font-1 margin-3">{stop.line} {stop.to}</div>
+                                <div className="bold font-1 margin-3">{stop.line} {stop.stop} {stop.to}</div>
                                 <div className="font-2 margin-1 normal">
                                     {(stop.journies) ? stop.journies.map((trip, i) => {
-                                        return <div key={i}>{trip.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.PresentableDistance} ({trip.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall} stops)</div>
+                                        return <div key={i}>{trip.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.PresentableDistance} {(trip.MonitoredVehicleJourney.MonitoredCall.Extensions.ExpectedArrivalTime) ? (<Moment fromNow interval={0}>{trip.MonitoredVehicleJourney.MonitoredCall.Extensions.ExpectedArrivalTime}</Moment>): null}</div>
                                     }): null}
                                 </div>
                             </div>
