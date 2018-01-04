@@ -132,16 +132,18 @@ function getBus(key, lines, cb) {
       url: `http://bustime.mta.info/api/siri/stop-monitoring.json?key=${key}&OperatorRef=MTA&MonitoringRef=${line.monitoringRef}&LineRef=${line.lineRef}`,
     };
     request(requestSettings, function (error, response, body) {
-      var jsonBody = JSON.parse(body);
-      data.push({
-        line: line.name,
-        to: line.to,
-        stop: line.stop,
-        journies: jsonBody.Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit,
-      });
-      lineIterator++;
-      if (lineIterator == lines.length -1) {
-        cb(data);
+      if (!error) {
+        var jsonBody = JSON.parse(body);
+        data.push({
+          line: line.name,
+          to: line.to,
+          stop: line.stop,
+          journies: jsonBody.Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit,
+        });
+        lineIterator++;
+        if (lineIterator == lines.length -1) {
+          cb(data);
+        }
       }
     });
   });
@@ -215,7 +217,9 @@ function getEvents(token, calendarId, cb) {
       singleEvents: true,
       orderBy: 'startTime'
     }, function(err, response) {
-      cb(response);
+      if (!err) {
+        cb(response);
+      }
     });
   });
 }

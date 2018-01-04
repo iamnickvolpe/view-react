@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Moment from 'react-moment';
 import moment from 'moment';
 
-moment.locale('en', {
+moment.updateLocale('en', {
     relativeTime: {
       future: '%s'
     }
@@ -66,7 +66,7 @@ class Events extends Component {
                     {events.future.map((event) => {
                         return (
                             <div className="margin-3" key={event.id}>
-                                <div className="bold font-3 events__summary"><span className="normal left"><Moment fromNow>{event.start.date || event.start.dateTime}</Moment></span> {(event.summary.includes("private"))? 'Private event': event.summary}</div>
+                                <div className="bold font-3 events__summary"><span className="normal left"><Moment fromNow>{event.start.date || event.start.dateTime}</Moment></span> {(event.summary && event.summary.includes("private"))? 'Private event': event.summary}</div>
                                 <div className="normal font-4"><Moment format="dddd MMMM Do h:mma">{event.start.date || event.start.dateTime}</Moment></div>
                             </div>
                         )
