@@ -70,16 +70,6 @@ cron.schedule('*/1 * * * *', function(){
   });
 }, true);
 
-getData('subway', function(credentials, user, widget, dataRef) {
-  getSubway(credentials.subway.key, widget.val().settings.lines, (body) => {
-    dataRef.child('subway').set(body);
-  });
-
-  getBus(credentials.subway.busKey, widget.val().settings.busLines, (body) => {
-    dataRef.child('bus').set(body);
-  });
-});
-
 cron.schedule('*/15 * * * *', function(){
   getData('events', function(credentials, user, widget, dataRef) {
     getEvents(credentials.google, widget.val().settings.calendarId, (body) => {
