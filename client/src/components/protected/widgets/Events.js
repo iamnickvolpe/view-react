@@ -34,7 +34,7 @@ class Events extends Component {
         }
         return (
             <div className="events" style={{ backgroundColor: this.props.widget.settings.backgroundColor, color: this.props.widget.settings.color }} >
-                <div className="font-1 normal margin-1">{this.props.widget.settings.name}</div>
+                <div className="font-1 normal margin-2">{this.props.widget.settings.name}</div>
 
                 {(events.today.length) ? 
                 <div className="margin-2">
