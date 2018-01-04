@@ -155,8 +155,6 @@ function getSubway(key, lines, cb) {
               stop.trips.push(update.arrival.time.low);
             }
           });
-          stop.trips.sort();
-          stop.trips = stop.trips.splice(0,2);
           stops.push(stop);
           stopsIterator++;
           if(stopsIterator == line.stops.length -1) {

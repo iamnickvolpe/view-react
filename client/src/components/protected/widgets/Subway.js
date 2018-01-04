@@ -3,6 +3,9 @@ import Moment from 'react-moment';
 
 class Subway extends Component {
     render() {
+        //let data = this.props.widget.data;
+        //console.log(data);
+        //stop.trips = stop.trips.splice(0,2);
         return (
             <div className="subway">
                 {(this.props.widget.data) ? this.props.widget.data.map((stop) => {
