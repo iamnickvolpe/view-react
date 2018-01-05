@@ -1,4 +1,5 @@
 # View Built With React
+![Alt text](/screenshot.png?raw=true "App Screenshot")
 ## Running locally
 ```
 npm i
