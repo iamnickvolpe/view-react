@@ -1,0 +1,100 @@
+{
+  "credentials" : {
+    "feedly" : {
+      "token" : "",
+      "userId" : ""
+    },
+    "google" : {},
+    "subway" : {
+      "busKey" : "",
+      "key" : ""
+    },
+    "weather" : {
+      "token" : ""
+    }
+  },
+  "widgets" : [ {
+    "settings" : {
+      "backgroundImage" : ""
+    },
+    "type" : "day"
+  }, {
+    "settings" : {
+      "zip" : ""
+    },
+    "type" : "weather"
+  }, {
+    "settings" : {
+      "backgroundColor" : "black",
+      "backgroundImage" : "",
+      "color" : "white",
+      "date" : "2018-10-27",
+      "title" : "My Countdown"
+    },
+    "type" : "countdown"
+  }, {
+    "settings" : {
+      "category" : "global.all"
+    },
+    "type" : "feed"
+  }, {
+    "settings" : {
+      "backgroundColor" : "#5d5d5d",
+      "calendarId" : "",
+      "color" : "#f1e7a1",
+      "name" : "My Calendar Name"
+    },
+    "type" : "events"
+  }, {
+    "settings" : {
+      "backgroundColor" : "#5d5d5d",
+      "calendarId" : "",
+      "color" : "#f1e7a1",
+      "name" : "My Calendar Name"
+    },
+    "type" : "events"
+  }, {
+    "settings" : {
+      "backgroundColor" : "#5d5d5d",
+      "calendarId" : "",
+      "color" : "#f1e7a1",
+      "name" : "My Calendar Name"
+    },
+    "type" : "events"
+  }, {
+    "settings" : {
+      "busLines" : [ {
+        "lineRef" : "MTA NYCT_B62",
+        "monitoringRef" : "305159",
+        "name" : "B62",
+        "order" : "1",
+        "stop" : "Greenpoint Ave.",
+        "to" : "LIC Queens Plaza"
+      }, {
+        "lineRef" : "MTA NYCT_B62",
+        "monitoringRef" : "305170",
+        "name" : "B62",
+        "order" : "2",
+        "stop" : "Greenpoint Ave.",
+        "to" : "Downtown Bkln Fulton Mall"
+      } ],
+      "lines" : [ {
+        "id" : 31,
+        "stops" : [ {
+          "color" : "#6CBE45",
+          "direction" : "uptown",
+          "id" : "G26N",
+          "name" : "Greenpoint Ave.",
+          "train" : "G"
+        }, {
+          "color" : "#6CBE45",
+          "direction" : "downtown",
+          "id" : "G26S",
+          "name" : "Greenpoint Ave.",
+          "train" : "G"
+        } ]
+      } ]
+    },
+    "type" : "subway"
+  } ]
+}

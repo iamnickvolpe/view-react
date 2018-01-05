@@ -62,7 +62,7 @@ class Events extends Component {
 
                 {(events.future.length) ? 
                 <div>
-                    {(events.tomorrow.length && events.future.length)?<div className="font-2 bold margin-3">Beyond</div>: null}
+                    {(events.tomorrow.length || events.future.length)?<div className="font-2 bold margin-3">Beyond</div>: null}
                     {events.future.map((event) => {
                         return (
                             <div className="margin-3" key={event.id}>
