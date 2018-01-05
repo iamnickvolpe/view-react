@@ -138,6 +138,7 @@ function getBus(key, lines, cb) {
           line: line.name,
           to: line.to,
           stop: line.stop,
+          order: line.order,
           journies: jsonBody.Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit,
         });
         lineIterator++;

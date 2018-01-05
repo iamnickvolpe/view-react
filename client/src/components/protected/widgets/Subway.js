@@ -37,7 +37,8 @@ class Subway extends Component {
                 }
                 return val;
             });
-            newStops.sort(function(a, b) {return a.to - b.to;});
+            newStops.sort(function(a, b) {return b.order - a.order;});
+            console.log(newStops.order);
         }
         return (
             <div className="subway">
